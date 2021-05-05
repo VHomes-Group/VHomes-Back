@@ -92,6 +92,9 @@ router.post('/addListing',
   async (req, res) => {
     try {
       const { title, listingId } = req.body
+      for (let j = listingId.len; j < 12; j++) {
+        listingId += '0'
+      }
       const listing = await Listing.findById(listingId);
       if (!listing) {
         return res.status(404).json({
